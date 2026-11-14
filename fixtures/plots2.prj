@@ -1,0 +1,1 @@
+PROJCS["园区投影",GEOGCS["GCS",DATUM["D",SPHEROID["S",6378137,298.257]],PRIMEM["Greenwich",0],UNIT["degree",0.0174532925199433]],PROJECTION["Transverse_Mercator"],PARAMETER["false_easting",500000],UNIT["metre",1]]

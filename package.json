@@ -12,7 +12,7 @@
     "acceptance": "node src/cli.js demo",
     "demo": "node src/cli.js demo",
     "fixtures": "node scripts/create-fixtures.js",
-    "check": "node --check src/cli.js && node --check src/domain.js"
+    "check": "node --check src/cli.js && node --check src/domain.js && node --check src/shapefile.js && node --check src/encoding.js && node --check src/intake.js && node --check src/demo.js && node --check src/archive.js"
   },
   "dependencies": {}
 }

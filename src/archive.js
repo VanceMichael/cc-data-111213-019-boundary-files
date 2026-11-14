@@ -20,10 +20,16 @@ export class Archive {
     try { await rename(temporary, path); }
     finally { await rm(temporary, { force: true }); }
   }
-  async accept(bytes, metadata) {
+  // 只写字节对象并返回摘要，不产生领取回执（成套暂存由 intake 管理自己的清单）。
+  async put(bytes) {
     await this.initialize();
     const sha256 = digest(bytes);
     await this.writeAtomic(join(this.directory, 'objects', sha256), bytes);
+    return { sha256, size: bytes.length };
+  }
+  async accept(bytes, metadata) {
+    await this.initialize();
+    const { sha256, size } = await this.put(bytes);
     const receipt = { id: randomUUID(), sha256, size: bytes.length,
       observedAt: new Date().toISOString(), metadata };
     await this.writeAtomic(join(this.directory, 'receipts', `${receipt.id}.json`),
